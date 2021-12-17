@@ -21,7 +21,7 @@ class Book(models.Model):
     summary = models.TextField(max_length=100)
     isbn = models.TextField('ISBN',max_length=50, unique=True)
     genre = models.ManyToManyField(Genre,help_text='select a genre for this book')
-    language = models.ForeignKey('Language', on_delete=models.SET_NULL, null=True)
+
 
     def __str__(self):
         return self.title
@@ -31,7 +31,7 @@ class Book(models.Model):
 
     def display_genre(self):
         return ', '.join(genre.name for genre in self.genre.all()[:3])
-    
+
     display_genre.short_description = 'Genre'
 
 class BookInstance(models.Model):
